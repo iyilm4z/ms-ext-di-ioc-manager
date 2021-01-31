@@ -71,8 +71,8 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
             barService1.Count();
             barService1.Count();
             var barService2 = IocManager.Instance.Resolve<IBarService>();
-            barService1.Count();
-            barService1.Count();
+            barService2.Count();
+            barService2.Count();
 
             if (barService1.Counter != barService2.Counter)
             {
