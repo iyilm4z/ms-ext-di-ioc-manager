@@ -1,2 +1,3 @@
 # Microsoft.Extensions.DependencyInjection.IocManager
-Conventional IocManager for Microsoft.Extensions.DependencyInjection
+
+An IoC abstraction for Microsoft.Extensions.DependencyInjection that resolves and registers services conventionally.
