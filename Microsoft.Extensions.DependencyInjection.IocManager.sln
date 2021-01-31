@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.IocManager", "Microsoft.Extensions.DependencyInjection.IocManager\Microsoft.Extensions.DependencyInjection.IocManager.csproj", "{7CF06792-78C1-4DA5-AB92-72F3E29F28F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.IocManager.Console", "Microsoft.Extensions.DependencyInjection.IocManager.Console\Microsoft.Extensions.DependencyInjection.IocManager.Console.csproj", "{AD38E989-131B-48FE-9F03-A934D8B2D0B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CF06792-78C1-4DA5-AB92-72F3E29F28F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF06792-78C1-4DA5-AB92-72F3E29F28F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF06792-78C1-4DA5-AB92-72F3E29F28F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF06792-78C1-4DA5-AB92-72F3E29F28F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD38E989-131B-48FE-9F03-A934D8B2D0B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD38E989-131B-48FE-9F03-A934D8B2D0B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD38E989-131B-48FE-9F03-A934D8B2D0B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD38E989-131B-48FE-9F03-A934D8B2D0B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
