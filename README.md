@@ -1,0 +1,2 @@
+# Microsoft.Extensions.DependencyInjection.IocManager
+Conventional IocManager for Microsoft.Extensions.DependencyInjection
