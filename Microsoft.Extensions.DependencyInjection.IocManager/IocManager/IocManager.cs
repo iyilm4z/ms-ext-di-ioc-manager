@@ -7,9 +7,9 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
 {
     public class IocManager : IIocManager
     {
-        public static IocManager Instance { get; private set; }
+        public static IocManager Instance { get; }
 
-        public ServiceCollection Services { get; private set; }
+        public ServiceCollection Services { get; }
 
         public IServiceProvider ServiceProvider { get; private set; }
 
@@ -126,9 +126,9 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
         {
             var context = new ConventionalRegistrationContext(assembly, this);
 
-            foreach (var registerer in _conventionalRegistrars)
+            foreach (var registrar in _conventionalRegistrars)
             {
-                registerer.RegisterAssembly(context);
+                registrar.RegisterAssembly(context);
             }
         }
 

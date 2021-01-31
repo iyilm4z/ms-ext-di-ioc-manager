@@ -4,9 +4,9 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
 {
     internal class ConventionalRegistrationContext : IConventionalRegistrationContext
     {
-        public Assembly Assembly { get; private set; }
+        public Assembly Assembly { get; }
         
-        public IIocManager IocManager { get; private set; }
+        public IIocManager IocManager { get; }
 
         internal ConventionalRegistrationContext(Assembly assembly, IIocManager iocManager)
         {
