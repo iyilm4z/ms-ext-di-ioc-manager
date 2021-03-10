@@ -37,27 +37,27 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
             ServiceProvider ??= Services.BuildServiceProvider();
         }
 
-        public void Register<TService>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+        public void Register<TService>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Transient)
             where TService : class
         {
             switch (lifeStyle)
             {
                 case DependencyLifeStyle.Transient:
-                    Services.AddTransient<Type>();
+                    Services.AddTransient<TService>();
                     break;
                 case DependencyLifeStyle.Singleton:
-                    Services.AddSingleton<Type>();
+                    Services.AddSingleton<TService>();
                     break;
                 case DependencyLifeStyle.Scoped:
-                    Services.AddScoped<Type>();
+                    Services.AddScoped<TService>();
                     break;
                 default:
-                    Services.AddTransient<Type>();
+                    Services.AddTransient<TService>();
                     break;
             }
         }
 
-        public void Register(Type serviceType, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+        public void Register(Type serviceType, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Transient)
         {
             switch (lifeStyle)
             {
@@ -76,7 +76,7 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
             }
         }
 
-        public void Register<TService, TImplementation>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+        public void Register<TService, TImplementation>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Transient)
             where TService : class
             where TImplementation : class, TService
         {
@@ -97,8 +97,7 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
             }
         }
 
-        public void Register(Type serviceType, Type implementationType,
-            DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
+        public void Register(Type serviceType, Type implementationType, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Transient)
         {
             switch (lifeStyle)
             {
@@ -139,7 +138,7 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
 
         public T Resolve<T>(Type serviceType)
         {
-            return (T) ServiceProvider.GetService(serviceType);
+            return (T)ServiceProvider.GetService(serviceType);
         }
 
         public object Resolve(Type serviceType)
@@ -159,12 +158,12 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
 
         public bool IsRegistered(Type serviceType)
         {
-            return (bool) ServiceProvider.GetServices(serviceType)?.Any();
+            return (bool)ServiceProvider.GetServices(serviceType)?.Any();
         }
 
         public bool IsRegistered<TService>()
         {
-            return (bool) ServiceProvider.GetServices<TService>()?.Any();
+            return (bool)ServiceProvider.GetServices<TService>()?.Any();
         }
 
         public void Dispose()

@@ -20,8 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection.Reflection
             return defaultInterfaces;
         }
 
-        public static List<Type> AssignedTypesInAssembly(this Type @this, Assembly assembly,
-            bool includeNonGenericTypes = false)
+        public static List<Type> AssignedTypesInAssembly(this Type @this, Assembly assembly, bool includeNonGenericTypes = false)
         {
             var assignedTypes = assembly.GetTypes()
                 .Where(type => @this.GetTypeInfo().IsAssignableFrom(type)
