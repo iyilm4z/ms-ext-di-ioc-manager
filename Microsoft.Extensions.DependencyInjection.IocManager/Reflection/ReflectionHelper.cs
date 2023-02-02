@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection.Reflection
 {
-    internal static class TypeExtensions
+    internal static class ReflectionHelper
     {
         public static List<Type> GetDefaultInterfaces(this Type @this)
         {
@@ -20,18 +20,21 @@ namespace Microsoft.Extensions.DependencyInjection.Reflection
             return defaultInterfaces;
         }
 
-        public static List<Type> AssignedTypesInAssembly(this Type @this, Assembly assembly, bool includeNonGenericTypes = false)
+        public static List<Type> GetCustomAttributesInAssembly<T>(this Assembly assembly,
+            bool includeNonGenericTypes = false)
         {
             var assignedTypes = assembly.GetTypes()
-                .Where(type => @this.GetTypeInfo().IsAssignableFrom(type)
+                .Where(type => GetCustomAttributesIncludingBaseInterfaces<T>(type).Any()
                                && type.GetTypeInfo().IsClass
                                && !type.GetTypeInfo().IsAbstract
-                               && !type.GetTypeInfo().IsSealed);
+                               && !type.GetTypeInfo().IsSealed)
+                .ToList();
 
             if (!includeNonGenericTypes)
             {
                 assignedTypes = assignedTypes
-                    .Where(type => !type.GetTypeInfo().IsGenericType);
+                    .Where(type => !type.GetTypeInfo().IsGenericType)
+                    .ToList();
             }
 
             return assignedTypes.ToList();
@@ -46,6 +49,17 @@ namespace Microsoft.Extensions.DependencyInjection.Reflection
             }
 
             return name;
+        }
+
+        private static IEnumerable<T> GetCustomAttributesIncludingBaseInterfaces<T>(Type type)
+        {
+            var attributeType = typeof(T);
+
+            return type.GetCustomAttributes(attributeType, true)
+                .Union(type.GetInterfaces()
+                    .SelectMany(interfaceType => interfaceType.GetCustomAttributes(attributeType, true)))
+                .Distinct()
+                .Cast<T>();
         }
     }
 }

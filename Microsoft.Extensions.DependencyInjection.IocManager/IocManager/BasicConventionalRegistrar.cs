@@ -4,11 +4,12 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
 {
     public class BasicConventionalRegistrar : IConventionalDependencyRegistrar
     {
+
+
         public void RegisterAssembly(IConventionalRegistrationContext context)
         {
             //Transient
-            typeof(ITransientDependency)
-                .AssignedTypesInAssembly(context.Assembly)
+            context.Assembly.GetCustomAttributesInAssembly<TransientDependencyAttribute>()
                 .ForEach(assignedType =>
                 {
                     //Self
@@ -24,8 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
                 });
 
             //Singleton
-            typeof(ISingletonDependency)
-                .AssignedTypesInAssembly(context.Assembly)
+            context.Assembly.GetCustomAttributesInAssembly<SingletonDependencyAttribute>()
                 .ForEach(assignedType =>
                 {
                     //Self
@@ -41,8 +41,7 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
                 });
 
             //Scoped
-            typeof(IScopedDependency)
-                .AssignedTypesInAssembly(context.Assembly)
+            context.Assembly.GetCustomAttributesInAssembly<ScopedDependencyAttribute>()
                 .ForEach(assignedType =>
                 {
                     //Self

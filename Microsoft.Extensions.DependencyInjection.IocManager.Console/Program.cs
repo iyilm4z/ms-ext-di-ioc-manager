@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection.IocManager
 {
+    [TransientDependency]
     public interface IFooService
     {
         void DoNothing();
@@ -15,19 +16,21 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
         void Count();
     }
 
+    [ScopedDependency]
     public interface IBazService
     {
         void DoNothing();
     }
 
-    public class FooService : IFooService, ITransientDependency
+    public class FooService : IFooService
     {
         public void DoNothing()
         {
         }
     }
 
-    public class BarService : IBarService, ISingletonDependency
+    [SingletonDependency]
+    public class BarService : IBarService
     {
         public int Counter { get; private set; }
 
@@ -37,7 +40,7 @@ namespace Microsoft.Extensions.DependencyInjection.IocManager
         }
     }
 
-    public class BazService : IBazService, IScopedDependency
+    public class BazService : IBazService
     {
         public void DoNothing()
         {
